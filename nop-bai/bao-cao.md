@@ -13,11 +13,11 @@ HƯỚNG DẪN - đọc rồi XÓA TOÀN BỘ các khối chú thích này sau k
 
 | | |
 |---|---|
-| Họ và tên | ___ |
-| MSSV | ___ |
+| Họ và tên | Đỗ Văn Linh |
+| MSSV | 2A202601190 |
 | Lớp / Khóa | K4 |
-| Repo GitHub | https://github.com/___/___ |
-| Ngày nộp | ___ |
+| Repo GitHub | https://github.com/DoVanLinh12/K4-Track2-Day21-2A202601190-DoVanLinh |
+| Ngày nộp | 21/08/2026 |
 
 ---
 
@@ -27,13 +27,13 @@ HƯỚNG DẪN - đọc rồi XÓA TOÀN BỘ các khối chú thích này sau k
 
 | Lần chạy | n_estimators | learning_rate | max_depth | f1_score | accuracy |
 |---|---|---|---|---|---|
-| 1 | ___ | ___ | ___ | ___ | ___ |
-| 2 | ___ | ___ | ___ | ___ | ___ |
-| 3 | ___ | ___ | ___ | ___ | ___ |
+| 1 | 100 | 0.1 | 3 | 0.7109 | 0.8780 |
+| 2 | 50 | 0.05 | 2 | 0.6051 | 0.8460 |
+| 3 | 200 | 0.1 | 5 | 0.7149 | 0.8740 |
 
-**Bộ siêu tham số đã chọn:** `n_estimators=___`, `learning_rate=___`, `max_depth=___`.
+**Bộ siêu tham số đã chọn:** `n_estimators=200`, `learning_rate=0.1`, `max_depth=5`.
 
-**Lý do:** ___
+**Lý do:** Lần chạy 3 có F1 cao nhất (0.7149), nên được chọn dù accuracy 0.8740 thấp hơn nhẹ so với 0.8780 của lần chạy 1. Điều này cho thấy accuracy cao nhất không nhất thiết nhận diện lớp thu nhập cao tốt nhất. Cấu hình lần 2 có ít cây, learning rate thấp và cây nông nên bị thiếu khớp, làm F1 chỉ còn 0.6051. Khi tăng số cây và độ sâu ở lần 3, mô hình học được nhiều quan hệ hơn và F1 tăng, đổi lại thời gian huấn luyện và độ phức tạp lớn hơn.
 
 <!--
 Trả lời trong phần Lý do:
@@ -49,7 +49,7 @@ Trả lời trong phần Lý do:
 
 <!-- Khoảng 120 - 150 từ. -->
 
-___
+Chỉ 24,8% mẫu thuộc lớp thu nhập trên 50K nên dữ liệu bị mất cân bằng. Một mô hình luôn dự đoán “thu nhập thấp” vẫn đạt accuracy khoảng 0.752 nhưng F1 của lớp dương bằng 0 vì không phát hiện được người thu nhập cao nào. F1 là trung bình điều hòa của precision và recall, do đó chỉ cao khi mô hình vừa hạn chế dự đoán dương sai, vừa tìm được đủ trường hợp dương thật. Lab dùng `f1_score(y_eval, preds)` mặc định cho lớp dương để quality gate đo trực tiếp khả năng nhận diện nhóm cần quan tâm. Không dùng weighted F1 vì lớp đa số có thể kéo kết quả lên; macro F1 cũng không phản ánh riêng hiệu quả trên lớp thu nhập cao như yêu cầu của bài.
 
 <!--
 Cần nêu được:

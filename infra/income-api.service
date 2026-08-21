@@ -1,0 +1,16 @@
+[Unit]
+Description=Income Model Inference Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu
+Environment="ARTIFACT_BUCKET=income-lab-2a202601190-740255824730"
+Environment="AWS_DEFAULT_REGION=ap-southeast-1"
+ExecStart=/usr/bin/python3 /home/ubuntu/src/serve.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
